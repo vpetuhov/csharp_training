@@ -32,6 +32,5 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.LinkText("home")).Click();
         }
-
     }
 }
