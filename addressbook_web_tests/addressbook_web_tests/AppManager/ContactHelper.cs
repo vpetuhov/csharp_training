@@ -102,5 +102,17 @@ namespace WebAddressbookTests
             return IsElementPresent(By.Name("selected[]"));
         }
 
+        public ContactHelper CreateIfNotExist()
+        {
+            manager.Navigator.GoToHomePage();
+
+            if (IsContactCreated() == false)
+            {
+                ContactData data = new ContactData("Jim", "Raynor");
+
+                Create(data);
+            }
+            return this;
+        }
     }
 }
