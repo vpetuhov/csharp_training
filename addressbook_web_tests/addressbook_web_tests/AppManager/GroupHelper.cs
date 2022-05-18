@@ -32,12 +32,6 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int v, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
-            if (IsGroupCreated() == false)
-            {
-                InitGroupCreation();
-                SubmitGroupCreation();
-                ReturnToGroupsPage();
-            }
             SelectGroup(v);
             initGroupModification();
             FillGroupForm(newData);
@@ -49,12 +43,6 @@ namespace WebAddressbookTests
         public GroupHelper Remove(int v)
         {
             manager.Navigator.GoToGroupsPage();
-            if (IsGroupCreated() == false)
-            {
-                InitGroupCreation();
-                SubmitGroupCreation();
-                ReturnToGroupsPage();
-            }
             SelectGroup(v);
             DeleteGroup();
             ReturnToGroupsPage();
@@ -83,7 +71,7 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
             return this;
         }
 
@@ -114,6 +102,36 @@ namespace WebAddressbookTests
         public bool IsGroupCreated()
         {
             return IsElementPresent(By.Name("selected[]"));
+        }
+
+
+        public GroupHelper CreateIfNotExist()
+        {
+            manager.Navigator.GoToGroupsPage();
+
+            if (IsGroupCreated() == false)
+            {
+                GroupData data = new GroupData("")
+                {
+                    Header = "",
+                    Footer = ""
+                };
+
+                Create(data);
+            }
+            return this;
+        }
+
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navigator.GoToGroupsPage();
+            ICollection<IWebElement> elements= driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new GroupData(element.Text));
+            }
+            return groups;
         }
     }
 }
