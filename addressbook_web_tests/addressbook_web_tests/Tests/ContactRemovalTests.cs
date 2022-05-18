@@ -9,11 +9,6 @@ namespace WebAddressbookTests
     [TestFixture]
     public class ContactRemovalTests : AuthTestBase
     {
-        [SetUp]
-        public void Init()
-        {
-            app.Contact.CreateIfNotExist();
-        }
 
         [Test]
         public void ContactRemovalTest()
