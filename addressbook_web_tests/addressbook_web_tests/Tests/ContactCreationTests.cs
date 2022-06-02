@@ -14,7 +14,29 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contact = new ContactData("Jim", "Raynor");
+            ContactData contact = new ContactData("Jim", "Raynor")
+            {
+                MiddleName = "James",
+                NickName = "NickName",
+
+                Company = "Eng",
+                Title = "Title",
+                Address = "г.Москва, ул.Баррикадная, д.30",
+
+                HomePhone = "+7(965) 125 85 63",
+                WorkPhone = "8(43678)8-25-36",
+                MobilePhone = "89088881134",
+                Fax = "225-25-25",
+
+                Email = "email@mail.ru",
+                Email2 = "email2@yandex.ru",
+                Email3 = "email3@gmail.com",
+                HomePage = "http://HomePage.ru",
+
+                SecondAddress = "г.Москва, ул.Неизвестная, д.38",
+                SecondPhone = "185-96-525",
+                Notes = "Notes"
+            };
 
             List<ContactData> oldСontacts = app.Contact.GetContactList();
 
