@@ -227,7 +227,8 @@ namespace WebAddressbookTests
         }
         public override string ToString()
         {
-            return string.Format("LastName: {0}, FirstName: {1}", LastName, FirstName);
+            return "LastName:" + LastName + "\nMiddleName:" + MiddleName + "\nFirstName:" + FirstName
+                + "\nNickName:" + NickName + "\nCompany:" + Company + "\nTitle:" + Title + "\nAdress:" + Address;
         }
     }
 }

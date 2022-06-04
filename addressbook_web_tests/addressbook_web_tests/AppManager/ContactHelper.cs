@@ -100,7 +100,9 @@ namespace WebAddressbookTests
 
         public ContactHelper OpenDetailsContactPage(int index)
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[3]/td[7]/a/img")).Click();
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click(); 
             return this;
         }
 

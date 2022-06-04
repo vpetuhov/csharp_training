@@ -10,33 +10,42 @@ namespace WebAddressbookTests
     [TestFixture]
     public class ContactCreationTests : AuthTestBase
     {
-
-        [Test]
-        public void ContactCreationTest()
+        public static IEnumerable<ContactData> RandomContactDataProvider()
         {
-            ContactData contact = new ContactData("Jim", "Raynor")
+            List<ContactData> contact = new List<ContactData>();
+            for (int i = 0; i < 5; i++)
             {
-                MiddleName = "James",
-                NickName = "NickName",
+                contact.Add(new ContactData(GenerateRandomString(30), GenerateRandomString(30))
+                {
+                    MiddleName = GenerateRandomString(30),
+                    NickName = GenerateRandomString(30),
 
-                Company = "Eng",
-                Title = "Title",
-                Address = "г.Москва, ул.Баррикадная, д.30",
+                    Company = GenerateRandomString(100),
+                    Title = GenerateRandomString(100),
+                    Address = GenerateRandomString(100),
 
-                HomePhone = "+7(965) 125 85 63",
-                WorkPhone = "8(43678)8-25-36",
-                MobilePhone = "89088881134",
-                Fax = "225-25-25",
+                    HomePhone = GenerateRandomString(20),
+                    WorkPhone = GenerateRandomString(20),
+                    MobilePhone = GenerateRandomString(20),
+                    Fax = GenerateRandomString(20),
 
-                Email = "email@mail.ru",
-                Email2 = "email2@yandex.ru",
-                Email3 = "email3@gmail.com",
-                HomePage = "http://HomePage.ru",
+                    Email = GenerateRandomString(50),
+                    Email2 = GenerateRandomString(50),
+                    Email3 = GenerateRandomString(50),
+                    HomePage = GenerateRandomString(50),
 
-                SecondAddress = "г.Москва, ул.Неизвестная, д.38",
-                SecondPhone = "185-96-525",
-                Notes = "Notes"
-            };
+                    SecondAddress = GenerateRandomString(100),
+                    SecondPhone = GenerateRandomString(20),
+                    Notes = GenerateRandomString(100)
+                });
+            }
+
+            return contact;
+        }
+
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void ContactCreationTest(ContactData contact)
+        {
 
             List<ContactData> oldСontacts = app.Contact.GetContactList();
 
