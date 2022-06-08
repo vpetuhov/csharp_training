@@ -1,8 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Serialization;
 using NUnit.Framework;
 
 namespace WebAddressbookTests

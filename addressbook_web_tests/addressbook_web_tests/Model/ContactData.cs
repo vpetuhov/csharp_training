@@ -12,6 +12,11 @@ namespace WebAddressbookTests
         private string allPhones;
         private string allEmails;
         private List<string> contactDetails;
+
+        public ContactData()
+        {
+        }
+
         public ContactData(string firstName, string lastname)
         {
             FirstName = firstName;
@@ -228,7 +233,11 @@ namespace WebAddressbookTests
         public override string ToString()
         {
             return "LastName:" + LastName + "\nMiddleName:" + MiddleName + "\nFirstName:" + FirstName
-                + "\nNickName:" + NickName + "\nCompany:" + Company + "\nTitle:" + Title + "\nAdress:" + Address;
+                + "\nNickName:" + NickName + "\nCompany:" + Company + "\nTitle:" + Title
+                + "\nAdress:" + Address + "\nHomePhone" + HomePhone + "\nWorkPhone" + WorkPhone
+                + "\nMobilePhone" + MobilePhone + "\nFax" + Fax + "\nEmail" + Email
+                + "\nEmail2" + Email2 + "\nEmail3" + Email3 + "\nHomePage" + HomePage
+                + "\nSecondAddress" + SecondAddress + "\nSecondPhone" + SecondPhone + "\nNotes" + Notes;
         }
     }
 }
