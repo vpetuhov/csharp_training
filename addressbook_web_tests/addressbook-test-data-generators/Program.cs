@@ -184,9 +184,9 @@ namespace addressbook_test_data_generators
                 sheet.Cells[row, 14] = contact.Email3;
                 sheet.Cells[row, 15] = contact.HomePage;
 
-                sheet.Cells[row, 22] = contact.SecondAddress;
-                sheet.Cells[row, 23] = contact.SecondPhone;
-                sheet.Cells[row, 24] = contact.Notes;
+                sheet.Cells[row, 16] = contact.SecondAddress;
+                sheet.Cells[row, 17] = contact.SecondPhone;
+                sheet.Cells[row, 18] = contact.Notes;
                 row++;
                 }
 
