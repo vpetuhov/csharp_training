@@ -9,10 +9,18 @@ namespace WebAddressbookTests
 {
     public class RemovingContactFromGroupTests : AuthTestBase
     {
+        [SetUp]
+        public void Setup()
+        {
+            app.Contact.CreateIfNotExist();
+            app.Groups.CreateIfNotExist();
+        }
+
         [Test]
         public void TestRemovingContactFromGroup()
         {
             GroupData group = GroupData.GetAll()[0];
+            app.Contact.CheckContactNotExist(group);
             List<ContactData> oldList = group.GetContacts();
             ContactData contact = group.GetContacts().First();
 
