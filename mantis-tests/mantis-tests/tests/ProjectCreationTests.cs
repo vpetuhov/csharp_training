@@ -10,34 +10,33 @@ using System.Collections.Generic;
 namespace mantis_tests
 {
     [TestFixture]
-    public class ProjectCreationTests : AuthTestBase
+    public class ProjectCreationTests : TestBase
     {
         [SetUp]
         public void Init()
         {
-            app.ProjectManagement.DeleteExistingProject(new ProjectData("New project"));
+            app.API.DeleteExistingProject(account, new ProjectData("New project"));
         }
 
         [Test]
         public void ProjectCreationTest()
         {
-            List<ProjectData> oldProjectsList = app.ProjectManagement.GetProjectsList();
+            List<ProjectData> oldProjectsList = app.API.GetProjectsList(account);
 
-            ProjectData project = new ProjectData("Test Project 5")
+            ProjectData project = new ProjectData("Test Project 10")
             {
-                Status = "в разработке",
-                Visibility = "публичный",
-                Enabled = "true",
+                Status = "development",
+                Visibility = "public",
+                Enabled = "True",
                 Description = "Test Description",
             };
 
-            app.ProjectManagement.CreateNewProject(project);
+            app.API.CreateNewProject(account, project);
 
-            Assert.AreEqual(oldProjectsList.Count + 1, app.ProjectManagement.GetCountProjects());
+            Assert.AreEqual(oldProjectsList.Count + 1, app.API.GetCountProjects(account));
 
-            List<ProjectData> newProjectsList = app.ProjectManagement.GetProjectsList();
+            List<ProjectData> newProjectsList = app.API.GetProjectsList(account);
 
-            project.Visibility = "публичный";
             oldProjectsList.Add(project);
             oldProjectsList.Sort();
             newProjectsList.Sort();

@@ -13,7 +13,7 @@ namespace mantis_tests
     public class ProjectManagementHelper : HelperBase
     {
         public ProjectManagementHelper(ApplicationManager manager) : base(manager) { }
-        
+
         public ProjectManagementHelper CreateNewProject(ProjectData project)
         {
             if (manager.ManagementMenu.CheckOpenManageProjectPage() == false)

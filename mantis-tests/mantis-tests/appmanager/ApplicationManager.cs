@@ -19,6 +19,7 @@ namespace mantis_tests
         public LoginHelper loginHelper;
         public ManagementMenuHelper managementMenuHelper;
         public ProjectManagementHelper projectManagementHelper;
+        public APIHelper apiHelper;
 
         public ApplicationManager()
         {
@@ -31,6 +32,7 @@ namespace mantis_tests
             loginHelper = new LoginHelper(this, baseURL);
             managementMenuHelper = new ManagementMenuHelper(this, baseURL);
             projectManagementHelper = new ProjectManagementHelper(this);
+            apiHelper = new APIHelper(this);
         }
 
         ~ApplicationManager()
@@ -84,6 +86,14 @@ namespace mantis_tests
             get
             {
                 return projectManagementHelper;
+            }
+        }
+
+        public APIHelper API
+        {
+            get
+            {
+                return apiHelper;
             }
         }
     }
