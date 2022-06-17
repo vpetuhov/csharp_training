@@ -17,19 +17,26 @@ namespace mantis_tests
         {
             app.API.DeleteExistingProject(account, new ProjectData("New project"));
         }
+        public static IEnumerable<ProjectData> RandomProjectDataProvider()
+        {
+            List<ProjectData> project = new List<ProjectData>();
+            for (int i = 0; i < 1; i++)
+            {
+                project.Add(new ProjectData(GenerateRandomString(20))
+                {
+                    Description = GenerateRandomString(100),
+                    Status = "development",
+                    Visibility = "public",
+                    Enabled = "True",
+                });
+            }
+            return project;
+        }
 
-        [Test]
-        public void ProjectCreationTest()
+        [Test, TestCaseSource("RandomProjectDataProvider")]
+        public void ProjectCreationTest(ProjectData project)
         {
             List<ProjectData> oldProjectsList = app.API.GetProjectsList(account);
-
-            ProjectData project = new ProjectData("Test Project 10")
-            {
-                Status = "development",
-                Visibility = "public",
-                Enabled = "True",
-                Description = "Test Description",
-            };
 
             app.API.CreateNewProject(account, project);
 
